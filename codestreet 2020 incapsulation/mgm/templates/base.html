@@ -1,0 +1,276 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>Home</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/navbar-fixed/">
+
+    <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+      <link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+
+
+     <style type="text/css">
+
+          {% block css %}
+          .coloured-section{
+  background-color: #522d5b;
+   color: #fff;
+}
+
+  #title{
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  }
+
+   #register{
+   margin-right: 30px;
+   }
+
+
+.nav-link, .breadcrumb-item{
+    padding: 10px 0 10px 30px;
+    transition: all .2s;
+    color: #fff;
+}
+
+.nav-link:hover, .breadcrumb-item a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.container-fluid{
+padding-right: 40px;
+padding-left: 40px;
+padding-top: 20px;
+padding-bottom: 20px;
+}
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+  .color-sec{
+   background-color: #522d5b;
+   color: #fff;
+  }
+
+
+
+   #register{
+   margin-right: 30px;
+   }
+.foot{
+text-align: center;
+
+}
+#footer{
+  background-color:#080808
+   color:#fff
+   text-align: center;
+   }
+
+{% endblock css %}
+    </style>
+    <!-- Custom styles for this template -->
+
+  </head>
+  <body>
+
+
+
+<section class="coloured-section" id="title">
+    <div class="fluid-container">
+        <nav class="navbar navbar-expand-md navbar-dark ">
+  <a class="navbar-brand" href="/">In-Capsulation</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+        {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="/list_item">List Item</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/add_items">Add Item</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/list_history">List History</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/forecast">Forecast</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/supplier_list">Supplier</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/add_supplier">Add supplier</a>
+        </li>
+        {% endif %}
+    </ul>
+     <ul class="navbar-nav">
+        {% if request.user.is_authenticated %}
+        <li><a href="/handleLogout"><button class="btn btn-outline-light">{{ user }} | Logout</button></a></li>
+        {% else %}
+
+         <button type="button" class="btn btn-outline-light" id="register" data-toggle="modal" data-target="#sign-up">SignUp</button>
+         <button type="button" class="btn btn-outline-light" id="signup" data-toggle="modal" data-target="#login">SignIn</button>
+
+        {% endif %}
+    </ul>
+  </div>
+</nav>
+  </div>
+</section>
+
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
+<div class="modal fade " id="sign-up" tabindex="-1" aria-labelledby="signupModel" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registration Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/handleSignup" method="POST">
+                    {% csrf_token %}
+                  <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fname">First Name</label>
+                        <input type="text" class="form-control" id="fname" name="fname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Last Name</label>
+                        <input type="text" class="form-control" id="lname" name="lname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailid">Email</label>
+                        <input type="email" class="form-control" id="emailid" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lnam">Phone Number</label>
+                        <input type="text" class="form-control" id="lnam" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="pass1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword2">Confirm your Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" name="pass2" required>
+                    </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade " id="login" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/handleLogin" method="POST">
+                    {% csrf_token %}
+
+                   <div class="form-group">
+                        <label for="userLogin">Username</label>
+                        <input type="text" class="form-control" id="loginuser" name="loginusername">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword2">Confirm your Password</label>
+                        <input type="password" class="form-control" id="InputPassword1" name="loginpass" required>
+                    </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+      {% block content %}
+
+      {% endblock %}
+ <footer class="black-section" id="footer">
+<div class="container-fluid">
+     <h8 class="foot">© Copyright 2020 In-Capsulation</h8>
+</div>
+ </footer>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
+</html>
