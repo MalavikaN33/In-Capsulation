@@ -1,7 +1,7 @@
 # In-Capsulation
 American Express CodeStreet20
 
-The idea is to meet the demand of the people while bridging the gap of shortage as well as avoiding excess of supplies. Forecast fluctuations and divert resources accordingly. Inventory management is the first of Capital Management after all.
+We are using sales history of items keeping in mind possible fluctions to map out predictions of accurate sales value. The idea is to meet the demand of the people while bridging the gap of shortage as well as avoiding excess of supplies. Forecast fluctuations and divert resources accordingly. Inventory management is the first of Capital Management after all.
 
 ## Steps
 
